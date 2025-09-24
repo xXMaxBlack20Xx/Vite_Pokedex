@@ -1,0 +1,5 @@
+- Tengo que tener el buscador 
+- Tengo que hacer un diseño bonito para la pagina.
+- Tengo que hacer que retraiga la cantidad de 252 pokemones 
+- Tengo que hacer la paginacion
+- Tengo que hacer que el header tenga una relatividad mayor a las cartas para que asi se pueda ver mejor.
