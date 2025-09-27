@@ -1,5 +1,3 @@
-// Orita pongo lo que hace cada uno de estos hooks para estudiar
-
 import { useEffect, useMemo, useState } from "react";
 import { getPokemonPage, extractIdFromUrl } from "../lib/apiPokemon";
 import type { PokemonListResponse } from "../types/Pokemon";
@@ -12,6 +10,7 @@ export function usePokedex(limit: 251) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Monta → pide lista (limit) → normaliza a {id,name} → ordena → guarda.
     useEffect(() => {
         (async () => {
             try {
@@ -30,6 +29,7 @@ export function usePokedex(limit: 251) {
         })();
     }, [limit]);
 
+    // filtered se recalcula solo si cambian pokemons o query.
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
         if (!q) return pokemons;

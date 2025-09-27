@@ -3,25 +3,25 @@ import SearchPanel from "./components/SearchPanel";
 import PokemonGrid from "./components/PokemonGrid";
 import LoadingText from "./components/LoadingText";
 import ErrorBanner from "./components/ErrorBanner";
-import Footer from "./components/Footer";
 import Pagination from "./components/Pagination";
+import Footer from "./components/Footer";
 import Title from "./components/Title";
+import bgImage from "./assets/background/back_white.png";
 import { usePokedex } from "./hooks/usePokedex";
 import { useResponsiveCols } from "./hooks/useResponsiveCols";
 import { useEffect, useMemo, useState } from "react";
-import bgImage from "./assets/background/back_white.png";
 
 export default function App() {
   const { pokemons, filtered, query, setQuery, loading, error } = usePokedex(251);
 
   // columnas actuales según viewport
-  const cols = useResponsiveCols(); // ej: 1,2,3,4,6,8
+  const cols = useResponsiveCols();
   const rowsPerPage = 3;
   const pageSize = rowsPerPage * Math.max(1, cols);
 
   const [page, setPage] = useState(1);
 
-  // Si cambia el query o las columnas (breakpoint), resetea a pág 1
+  // Si cambia el query o las columnas (breakpoint)
   useEffect(() => {
     setPage(1);
   }, [query, cols]);
@@ -33,7 +33,7 @@ export default function App() {
     return filtered.slice(start, start + pageSize);
   }, [filtered, page, pageSize]);
 
-  // Scroll al top al cambiar de página (opcional)
+  // Scroll al top al cambiar de página
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
@@ -61,7 +61,6 @@ export default function App() {
           </>
         )}
       </main>
-
       <Footer />
     </div>
   );

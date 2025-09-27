@@ -1,3 +1,5 @@
+// hacemos un ftch a la api de pokemon para tener el id y los nombres ordenados por id
+
 import { useEffect, useState } from 'react';
 import { getPokemonPage, extractIdFromUrl } from '../lib/apiPokemon';
 

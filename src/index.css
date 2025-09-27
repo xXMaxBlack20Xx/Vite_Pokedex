@@ -78,12 +78,9 @@ button:focus-visible {
 /* Ocultar scrollbar pero mantener funcionalidad */
 ::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari */
 }
 
 * {
   -ms-overflow-style: none;
-  /* IE y Edge */
   scrollbar-width: none;
-  /* Firefox */
 }

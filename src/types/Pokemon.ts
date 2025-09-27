@@ -1,74 +1,32 @@
-// Tipos principales de la PokeAPI que usaremos en la app
-
+// Recurso nombrado básico de PokeAPI (lo usa "types")
 export interface NamedAPIResource {
-    name: string;
-    url: string;
+  name: string;
+  url: string;
 }
 
+// Lista genérica paginada (la usa /pokemon?limit&offset)
 export interface APIResourceList<T = NamedAPIResource> {
-    count: number;
-    next: string | null;
-    previous: string | null;
-    results: T[];
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
 }
 
-/** Respuesta de /pokemon?limit=&offset= */
+// Alias específico para /pokemon?…
 export type PokemonListResponse = APIResourceList;
 
-/** Detalle de /pokemon/{id|name} (recortado a lo más útil para UI inicial) */
+// Detalles que usa tu UI (card + tipos + artwork)
 export interface Pokemon {
-    id: number;
-    name: string;
-    height: number;
-    weight: number;
-    base_experience: number;
-    sprites: {
+  id: number;
+  name: string;
+  sprites: {
+    front_default: string | null;
+    other?: {
+      // arte oficial para las tarjetas
+      ['official-artwork']?: {
         front_default: string | null;
-        other?: {
-            /** Arte oficial útil para tarjetas */
-            ['official-artwork']?: {
-                front_default: string | null;
-            };
-        };
+      };
     };
-    types: { slot: number; type: NamedAPIResource }[];
-    abilities: {
-        ability: NamedAPIResource;
-        is_hidden: boolean;
-        slot: number;
-    }[];
-    stats: {
-        base_stat: number;
-        effort: number;
-        stat: NamedAPIResource;
-    }[];
-}
-
-/** /pokemon-species/{id|name} (resumen útil para flavor text y cadena evolutiva) */
-export interface PokemonSpecies {
-    id: number;
-    name: string;
-    evolution_chain: { url: string | null };
-    flavor_text_entries: {
-        flavor_text: string;
-        language: NamedAPIResource;
-        version: NamedAPIResource;
-    }[];
-    genera: { genus: string; language: NamedAPIResource }[];
-}
-
-/** /evolution-chain/{id} (estructura en árbol) */
-export interface EvolutionChain {
-    id: number;
-    chain: ChainLink;
-}
-
-export interface ChainLink {
-    is_baby: boolean;
-    species: NamedAPIResource;
-    evolves_to: ChainLink[];
-    evolution_details?: {
-        min_level?: number | null;
-        trigger?: NamedAPIResource | null;
-    }[];
+  };
+  types: { slot: number; type: NamedAPIResource }[];
 }

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 
-/**
- * Devuelve # de columnas según breakpoints Tailwind que usas:
- * sm: 2, md: 3, lg: 4, xl: 6, 2xl: 8 (ajústalo a tu grid real)
- */
+// Devuelve # de columnas según breakpoints
+
 export function useResponsiveCols() {
   const [cols, setCols] = useState(1);
 

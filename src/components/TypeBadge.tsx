@@ -1,5 +1,5 @@
 interface Props {
-    type: string; // ej: "grass", "poison", "fuego", "planta"...
+    type: string;
 }
 
 const MAP: Record<string, { bg: string; text: string; ring: string; label?: string }> = {
@@ -38,7 +38,7 @@ export default function TypeBadge({ type }: Props) {
     return (
         <span
             className={[
-                "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold",
+                "inline-flex items-center rounded-2xl px-3 py-1 text-xs font-semibold",
                 style.bg, style.text, "ring-1", style.ring, "shadow-sm"
             ].join(" ")}
             title={label}
